@@ -60,8 +60,16 @@ def dbscan_summary(dbscan):
         "n_core": int(len(dbscan.core_sample_indices_)),
     }
 
-# Step 6 - dbscan_predict (not yet solved)
-# TODO: implement
+# Step 6 - dbscan_predict
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+
+
+def dbscan_predict(dbscan, X_new, n_neighbors=50):
+    core_X = dbscan.components_
+    core_y = dbscan.labels_[dbscan.core_sample_indices_]
+    knn = KNeighborsClassifier(n_neighbors=n_neighbors).fit(core_X, core_y)
+    return knn.predict(X_new).astype(int)
 
 # Step 7 - fit_gmm (not yet solved)
 # TODO: implement

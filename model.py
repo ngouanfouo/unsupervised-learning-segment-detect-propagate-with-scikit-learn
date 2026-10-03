@@ -219,8 +219,13 @@ def segment_colors(image, k=4, random_state=42):
     segmented = centers.reshape(h, w, 3)
     return segmented
 
-# Step 16 - save_and_reload_clusterer (not yet solved)
-# TODO: implement
+# Step 16 - save_and_reload_clusterer
+import joblib
+
+
+def save_and_reload_clusterer(kmeans, rep_labels, path):
+    joblib.dump({"kmeans": kmeans, "rep_labels": rep_labels}, path)
+    return joblib.load(path)
 
 # Step 17 - predict_digit_labels (not yet solved)
 # TODO: implement

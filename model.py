@@ -119,8 +119,15 @@ def baseline_50_random(X_train, y_train, X_test, y_test, n_labeled=50, random_st
     clf = LogisticRegression(max_iter=10000).fit(X_lab, y_lab)
     return float(clf.score(X_test, y_test))
 
-# Step 11 - representative_digits (not yet solved)
-# TODO: implement
+# Step 11 - representative_digits
+import numpy as np
+
+
+def representative_digits(X_train, k=50, random_state=42):
+    kmeans = fit_kmeans(X_train, k, random_state=random_state)
+    distances = kmeans.transform(X_train)
+    rep_idx = np.argmin(distances, axis=0)
+    return kmeans, rep_idx
 
 # Step 12 - train_on_representatives (not yet solved)
 # TODO: implement

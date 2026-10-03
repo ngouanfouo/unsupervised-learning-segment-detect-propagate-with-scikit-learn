@@ -139,8 +139,47 @@ def train_on_representatives(X_train, y_train, rep_idx, X_test, y_test):
     )
     return float(clf.score(X_test, y_test))
 
-# Step 13 - propagate_and_train (not yet solved)
-# TODO: implement
+# Step 13 - propagate_and_train
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+
+def propagate_and_train(X_train, y_train, kmeans, rep_idx, X_test, y_test, percentile=20):
+    distances = kmeans.transform(X_train)          # (n, k)
+    labels = kmeans.labels_                        # cluster of each point
+    k = len(rep_idx)
+
+    # Distance from each point to its own centroid
+    d_own = distances[np.arange(len(X_train)), labels]
+
+    selected_idx = []
+    propagated_y = []
+
+    for j in range(k):
+        members = np.where(labels == j)[0]
+        if len(members) == 0:
+            continue
+        cutoff = np.percentile(d_own[members], percentile)
+        chosen = members[d_own[members] <= cutoff]
+        selected_idx.append(chosen)
+        propagated_y.append(np.full(len(chosen), y_train[rep_idx[j]]))
+
+    selected_idx = np.concatenate(selected_idx)
+    propagated_y = np.concatenate(propagated_y).astype(y_train.dtype)
+
+    # How many of the propagated labels are actually correct?
+    label_accuracy = float((propagated_y == y_train[selected_idx]).mean())
+
+    clf = LogisticRegression(max_iter=10000).fit(
+        X_train[selected_idx], propagated_y
+    )
+    test_accuracy = float(clf.score(X_test, y_test))
+
+    return {
+        "n_propagated": int(len(selected_idx)),
+        "label_accuracy": label_accuracy,
+        "test_accuracy": test_accuracy,
+    }
 
 # Step 14 - synthetic_image (not yet solved)
 # TODO: implement

@@ -86,8 +86,14 @@ def fit_gmm(X, n_components, random_state=42):
 def bic_curve(X, ks):
     return {k: float(fit_gmm(X, k).bic(X)) for k in ks}
 
-# Step 8 - flag_anomalies (not yet solved)
-# TODO: implement
+# Step 8 - flag_anomalies
+import numpy as np
+
+
+def flag_anomalies(gmm, X, contamination=0.04):
+    densities = gmm.score_samples(X)
+    threshold = np.percentile(densities, 100 * contamination)
+    return densities < threshold
 
 # Step 9 - digits_data (not yet solved)
 # TODO: implement

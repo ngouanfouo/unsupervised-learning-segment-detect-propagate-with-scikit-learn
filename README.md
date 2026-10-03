@@ -13,7 +13,7 @@ python scaffold.py
 - [x] **1.** blobs_data
 - [x] **2.** fit_kmeans
 - [x] **3.** inertia_curve
-- [ ] **4.** silhouette_curve
+- [x] **4.** silhouette_curve
 - [ ] **5.** fit_dbscan
 - [ ] **6.** dbscan_predict
 - [ ] **7.** fit_gmm

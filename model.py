@@ -29,8 +29,20 @@ def fit_kmeans(X, k, random_state=42):
 def inertia_curve(X, ks):
     return {k: float(fit_kmeans(X, k).inertia_) for k in ks}
 
-# Step 4 - silhouette_curve (not yet solved)
-# TODO: implement
+# Step 4 - silhouette_curve
+from sklearn.metrics import silhouette_score
+
+
+def silhouette_curve(X, ks):
+    return {
+        k: float(silhouette_score(X, fit_kmeans(X, k).labels_))
+        for k in ks
+        if k >= 2
+    }
+
+
+def best_k_by_silhouette(curve):
+    return max(curve, key=lambda k: (curve[k], -k))
 
 # Step 5 - fit_dbscan (not yet solved)
 # TODO: implement

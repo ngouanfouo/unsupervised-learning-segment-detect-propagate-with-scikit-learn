@@ -11,7 +11,7 @@ python scaffold.py
 ## Steps
 
 - [x] **1.** blobs_data
-- [ ] **2.** fit_kmeans
+- [x] **2.** fit_kmeans
 - [ ] **3.** inertia_curve
 - [ ] **4.** silhouette_curve
 - [ ] **5.** fit_dbscan

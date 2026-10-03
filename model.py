@@ -19,8 +19,11 @@ def blobs_data(random_state=42):
     )
     return X, y
 
-# Step 2 - fit_kmeans (not yet solved)
-# TODO: implement
+# Step 2 - fit_kmeans
+from sklearn.cluster import KMeans
+
+def fit_kmeans(X, k, random_state=42):
+    return KMeans(n_clusters=k, n_init=10, random_state=random_state).fit(X)
 
 # Step 3 - inertia_curve (not yet solved)
 # TODO: implement

@@ -71,8 +71,20 @@ def dbscan_predict(dbscan, X_new, n_neighbors=50):
     knn = KNeighborsClassifier(n_neighbors=n_neighbors).fit(core_X, core_y)
     return knn.predict(X_new).astype(int)
 
-# Step 7 - fit_gmm (not yet solved)
-# TODO: implement
+# Step 7 - fit_gmm
+from sklearn.mixture import GaussianMixture
+
+
+def fit_gmm(X, n_components, random_state=42):
+    return GaussianMixture(
+        n_components=n_components,
+        n_init=10,
+        random_state=random_state,
+    ).fit(X)
+
+
+def bic_curve(X, ks):
+    return {k: float(fit_gmm(X, k).bic(X)) for k in ks}
 
 # Step 8 - flag_anomalies (not yet solved)
 # TODO: implement

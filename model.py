@@ -1,0 +1,69 @@
+"""
+Unsupervised Learning: Segment, Detect, Propagate with Scikit-Learn
+
+Assembled from your step-by-step solutions.
+"""
+
+import numpy as np
+
+# Step 1 - blobs_data
+from sklearn.datasets import make_blobs
+
+def blobs_data(random_state=42):
+    centers = [[0.2, 2.3], [-1.5, 2.3], [-2.8, 1.8], [-2.8, 2.8], [-2.8, 1.3]]
+    X, y = make_blobs(
+        n_samples=2000,
+        centers=centers,
+        cluster_std=[0.4, 0.3, 0.1, 0.1, 0.1],
+        random_state=random_state,
+    )
+    return X, y
+
+# Step 2 - fit_kmeans (not yet solved)
+# TODO: implement
+
+# Step 3 - inertia_curve (not yet solved)
+# TODO: implement
+
+# Step 4 - silhouette_curve (not yet solved)
+# TODO: implement
+
+# Step 5 - fit_dbscan (not yet solved)
+# TODO: implement
+
+# Step 6 - dbscan_predict (not yet solved)
+# TODO: implement
+
+# Step 7 - fit_gmm (not yet solved)
+# TODO: implement
+
+# Step 8 - flag_anomalies (not yet solved)
+# TODO: implement
+
+# Step 9 - digits_data (not yet solved)
+# TODO: implement
+
+# Step 10 - baseline_50_random (not yet solved)
+# TODO: implement
+
+# Step 11 - representative_digits (not yet solved)
+# TODO: implement
+
+# Step 12 - train_on_representatives (not yet solved)
+# TODO: implement
+
+# Step 13 - propagate_and_train (not yet solved)
+# TODO: implement
+
+# Step 14 - synthetic_image (not yet solved)
+# TODO: implement
+
+# Step 15 - segment_colors (not yet solved)
+# TODO: implement
+
+# Step 16 - save_and_reload_clusterer (not yet solved)
+# TODO: implement
+
+# Step 17 - predict_digit_labels (not yet solved)
+# TODO: implement
+

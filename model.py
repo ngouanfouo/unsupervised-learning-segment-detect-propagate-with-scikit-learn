@@ -44,8 +44,21 @@ def silhouette_curve(X, ks):
 def best_k_by_silhouette(curve):
     return max(curve, key=lambda k: (curve[k], -k))
 
-# Step 5 - fit_dbscan (not yet solved)
-# TODO: implement
+# Step 5 - fit_dbscan
+from sklearn.cluster import DBSCAN
+
+
+def fit_dbscan(X, eps=0.2, min_samples=5):
+    return DBSCAN(eps=eps, min_samples=min_samples).fit(X)
+
+
+def dbscan_summary(dbscan):
+    labels = dbscan.labels_
+    return {
+        "n_clusters": int(len(set(labels)) - (1 if -1 in labels else 0)),
+        "n_noise": int((labels == -1).sum()),
+        "n_core": int(len(dbscan.core_sample_indices_)),
+    }
 
 # Step 6 - dbscan_predict (not yet solved)
 # TODO: implement

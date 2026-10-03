@@ -181,8 +181,32 @@ def propagate_and_train(X_train, y_train, kmeans, rep_idx, X_test, y_test, perce
         "test_accuracy": test_accuracy,
     }
 
-# Step 14 - synthetic_image (not yet solved)
-# TODO: implement
+# Step 14 - synthetic_image
+import numpy as np
+
+
+def synthetic_image(size=48):
+    img = np.zeros((size, size, 3), dtype=np.float64)
+    half = size // 2
+
+    # Green channel rises 0 -> 1 across each half
+    green = np.linspace(0.0, 1.0, half)
+
+    # Left half: red -> yellow  (R = 1, G = green, B = 0)
+    img[:, :half, 0] = 1.0
+    img[:, :half, 1] = green
+    img[:, :half, 2] = 0.0
+
+    # Right half: blue -> cyan   (R = 0, G = green, B = 1)
+    img[:, half:, 0] = 0.0
+    img[:, half:, 1] = green
+    img[:, half:, 2] = 1.0
+
+    # Pure white square in the top-left corner
+    sq = size // 4
+    img[:sq, :sq, :] = 1.0
+
+    return img
 
 # Step 15 - segment_colors (not yet solved)
 # TODO: implement
